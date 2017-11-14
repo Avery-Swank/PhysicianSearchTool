@@ -98,30 +98,30 @@ public class WebsiteSearch {
 		return false;
 	}
 	
-		// Search the Health East website for active/inactive physicians
-		public boolean isHealthEast(){
-			try {
-				page1 = webClient.getPage("http://www.healtheast.org/find-a-doctor.html");
-				List<HtmlForm> forms = page1.getForms();
-				form = forms.get(1);
-
-				HtmlInput button = form.getInputByName("submit");
-				HtmlTextInput textField1 = form.getInputByName("firstname");
-				HtmlTextInput textField2 = form.getInputByName("lastname");
-				textField1.setValueAttribute(fName);
-				textField2.setValueAttribute(lName);
-				
-				HtmlPage page2 = (HtmlPage) button.click();
-				String searchContent = page2.asText();
-				searchContent = searchContent.toUpperCase();
-				
-				return !searchContent.contains("NO RECORDS WERE FOUND");
-				
-			} catch (Exception e) {
-				System.out.println("HEALTHEAST ERROR: " + e.getMessage());
-			}
+	// Search the Health East website for active/inactive physicians
+	public boolean isHealthEast(){
+		try {
+			page1 = webClient.getPage("http://www.healtheast.org/find-a-doctor.html");
+			List<HtmlForm> forms = page1.getForms();
+			form = forms.get(1);
 			
-			return false;
+			HtmlInput button = form.getInputByName("submit");
+			HtmlTextInput textField1 = form.getInputByName("firstname");
+			HtmlTextInput textField2 = form.getInputByName("lastname");
+			textField1.setValueAttribute(fName);
+			textField2.setValueAttribute(lName);
+			
+			HtmlPage page2 = (HtmlPage) button.click();
+			String searchContent = page2.asText();
+			searchContent = searchContent.toUpperCase();
+			
+			return !searchContent.contains("NO RECORDS WERE FOUND");
+			
+		} catch (Exception e) {
+			System.out.println("HEALTHEAST ERROR: " + e.getMessage());
 		}
+		
+		return false;
+	}
 
 }

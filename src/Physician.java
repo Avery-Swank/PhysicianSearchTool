@@ -88,6 +88,7 @@ public class Physician {
 		}
 	}
 	
+	// Add a background color to the first column of the physicians row submissions
 	public void HighlightPhysician(){
 		for(int i = 0; i < getPhysicianCount(); i++){
 			cell = rows[i].getCell(0);
