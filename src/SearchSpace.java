@@ -21,6 +21,8 @@ public class SearchSpace {
 	public static int lNameColumn = 8;
 	public static int locationColumn = 13;
 	
+	public static boolean rowBreak = false;
+	
 	// Orange background attributes
 	public static HSSFCellStyle style;
 
@@ -41,7 +43,7 @@ public class SearchSpace {
         // for where they are currently practicing, and record that within the physican
         int start = 1;
     		
-        while(start < sheet.getPhysicalNumberOfRows()){
+        while(start < sheet.getPhysicalNumberOfRows() || rowBreak == false){
             	
          	try{
            		Physician phy = new Physician(sheet, start, codeColumn, npiColumn, fNameColumn, lNameColumn, locationColumn);
@@ -53,7 +55,8 @@ public class SearchSpace {
           		System.out.println(phy);
                    
           	} catch(Exception e){
-           		System.out.println("Error: " + e.getMessage());
+           		System.out.println("Search Error: " + e.getMessage());
+           		rowBreak = true;
            	}
             	
         }
